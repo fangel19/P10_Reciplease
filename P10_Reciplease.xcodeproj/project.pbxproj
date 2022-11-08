@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		12849B21552A24546227EF3F /* Pods_P10_Reciplease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA3A6155F4C31D8D1365F59 /* Pods_P10_Reciplease.framework */; };
+		240400BC290BD7A600A65DF2 /* RecipeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240400BB290BD7A600A65DF2 /* RecipeDetail.swift */; };
 		243023FB28F9649E005AA516 /* SelectedRecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243023FA28F9649E005AA516 /* SelectedRecipeController.swift */; };
 		247C7537273C3ECA0076D163 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C7536273C3ECA0076D163 /* Ingredient.swift */; };
 		247C753F273C41C20076D163 /* IngredientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C753E273C41C20076D163 /* IngredientController.swift */; };
@@ -56,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		0FA3A6155F4C31D8D1365F59 /* Pods_P10_Reciplease.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_P10_Reciplease.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		240400BB290BD7A600A65DF2 /* RecipeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetail.swift; sourceTree = "<group>"; };
 		243023FA28F9649E005AA516 /* SelectedRecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRecipeController.swift; sourceTree = "<group>"; };
 		247C7536273C3ECA0076D163 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		247C753E273C41C20076D163 /* IngredientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientController.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			children = (
 				247C7536273C3ECA0076D163 /* Ingredient.swift */,
 				24C79518274587410095D618 /* Recipe.swift */,
+				240400BB290BD7A600A65DF2 /* RecipeDetail.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				24C79519274587410095D618 /* Recipe.swift in Sources */,
 				243023FB28F9649E005AA516 /* SelectedRecipeController.swift in Sources */,
 				24DCBAF328E6FFEB003C6223 /* Welcome.swift in Sources */,
+				240400BC290BD7A600A65DF2 /* RecipeDetail.swift in Sources */,
 				247C753F273C41C20076D163 /* IngredientController.swift in Sources */,
 				24E24E8F27593DF400421680 /* AlamofireRequest.swift in Sources */,
 				24F0BB0B27282D8E00889CF0 /* AppDelegate.swift in Sources */,

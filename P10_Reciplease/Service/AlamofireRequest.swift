@@ -40,13 +40,17 @@ class RecipeRequest {
                 if let url: URL = URL(string: urlString)
                     , let data: Data = try? Data(contentsOf: url)
                     , let image: UIImage = UIImage(data: data)
+
                 {
                     let recipe = Recipe(
                         recipeImage: image,
                         recipeName: hit.recipe.label,
                         recipeIngredient: hit.recipe.ingredientLines.joined(separator: ","),
+                        recipeIngredientList: hit.recipe.ingredientLines.joined(separator: "\n"),
                         recipeTemp: Double(hit.recipe.totalTime),
-                        numberOfLikes: Double(hit.recipe.yield)
+                        numberOfLikes: Double(hit.recipe.yield),
+                        recipeDetailURL: hit.recipe.url
+
                     )
                     recipes.append(recipe)
                 }

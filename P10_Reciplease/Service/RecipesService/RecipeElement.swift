@@ -11,7 +11,8 @@ struct RecipeElement: Codable {
     let label: String
     let image: String
     let source: String
-    let url, shareAs: String
+    let url: String
+    let shareAs: String
     let yield: Double
     let ingredientLines: [String]
     let ingredients: [IngredientRecipe]

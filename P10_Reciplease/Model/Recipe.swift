@@ -13,7 +13,10 @@ struct Recipe {
     let recipeImage: UIImage
     let recipeName: String
     let recipeIngredient: String
+    let recipeIngredientList: String
     let recipeTemp: Double
     let numberOfLikes: Double
+    let recipeDetailURL: String
     
 }
+

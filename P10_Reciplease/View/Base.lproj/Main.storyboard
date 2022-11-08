@@ -198,44 +198,51 @@
             <objects>
                 <viewController storyboardIdentifier="Recipe" id="yDk-J8-hPj" customClass="SelectedRecipeController" customModule="P10_Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="duc-DZ-lke">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwN-4X-Sgf">
-                                <rect key="frame" x="0.0" y="210" width="375" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="dXQ-kK-9oL"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bMr-uK-grQ">
-                                <rect key="frame" x="0.0" y="20" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="539"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <imageView key="tableHeaderView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="CO4-FI-SBY">
+                                <imageView key="tableHeaderView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="CO4-FI-SBY">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="220" id="M4K-FG-dFt"/>
                                     </constraints>
                                 </imageView>
-                                <label key="tableFooterView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TXS-We-U2P">
-                                    <rect key="frame" x="0.0" y="220" width="375" height="44"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="pVb-5b-iN6">
+                                    <rect key="frame" x="0.0" y="220" width="375" height="310"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <attributedString key="attributedText">
-                                        <fragment content="Label">
-                                            <attributes>
-                                                <font key="NSFont" metaFont="system" size="17"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TXS-We-U2P">
+                                            <rect key="frame" x="8" y="11" width="359" height="291"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <attributedString key="attributedText">
+                                                <fragment content="All ingredients">
+                                                    <attributes>
+                                                        <font key="NSFont" size="17" name="Chalkduster"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwN-4X-Sgf">
+                                <rect key="frame" x="0.0" y="210" width="375" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dXQ-kK-9oL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5gJ-eb-MOc">
-                                <rect key="frame" x="20" y="587" width="335" height="50"/>
+                                <rect key="frame" x="20" y="567" width="335" height="50"/>
                                 <color key="backgroundColor" cyan="0.69999999999999996" magenta="0.27000000000000002" yellow="0.75" black="0.10000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ghp-sg-aof"/>
@@ -245,20 +252,32 @@
                                 <state key="normal" title="Get directions">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="clicForDetailRecipe:" destination="yDk-J8-hPj" eventType="touchUpInside" id="wUP-O5-63A"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wBZ-Gu-QYw">
-                                <rect key="frame" x="308" y="20" width="67" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wBZ-Gu-QYw">
+                                <rect key="frame" x="325" y="40" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="wBZ-Gu-QYw" secondAttribute="height" multiplier="1:1" id="2cm-WM-ybg"/>
+                                    <constraint firstAttribute="height" constant="30" id="FYb-AQ-Eud"/>
+                                    <constraint firstAttribute="width" constant="30" id="OXr-WF-myQ"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button" image="etoile"/>
+                                <connections>
+                                    <action selector="favory:" destination="yDk-J8-hPj" eventType="touchUpInside" id="XBX-lN-ffA"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Byo-wd-f5G"/>
                         <color key="backgroundColor" cyan="0.65000000000000002" magenta="0.64000000000000001" yellow="0.64000000000000001" black="0.57999999999999996" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Byo-wd-f5G" firstAttribute="trailing" secondItem="wBZ-Gu-QYw" secondAttribute="trailing" constant="20" id="1fH-XA-XNS"/>
                             <constraint firstItem="Byo-wd-f5G" firstAttribute="trailing" secondItem="5gJ-eb-MOc" secondAttribute="trailing" constant="20" id="5HL-gz-dqZ"/>
                             <constraint firstItem="5gJ-eb-MOc" firstAttribute="leading" secondItem="Byo-wd-f5G" secondAttribute="leading" constant="20" id="GlI-ap-5hx"/>
                             <constraint firstItem="5gJ-eb-MOc" firstAttribute="top" secondItem="bMr-uK-grQ" secondAttribute="bottom" constant="8" id="JvS-1D-Xcx"/>
+                            <constraint firstItem="wBZ-Gu-QYw" firstAttribute="top" secondItem="Byo-wd-f5G" secondAttribute="top" constant="40" id="dF2-ES-RTR"/>
                             <constraint firstItem="bMr-uK-grQ" firstAttribute="top" secondItem="Byo-wd-f5G" secondAttribute="top" constant="20" id="h3B-q7-t5w"/>
                             <constraint firstItem="rwN-4X-Sgf" firstAttribute="top" secondItem="Byo-wd-f5G" secondAttribute="top" constant="210" id="jFY-Fo-YkO"/>
                             <constraint firstItem="bMr-uK-grQ" firstAttribute="leading" secondItem="Byo-wd-f5G" secondAttribute="leading" id="kJN-nj-kNP"/>
@@ -270,7 +289,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Reciplease" id="Le5-ls-rir"/>
                     <connections>
+                        <outlet property="allIngredients" destination="TXS-We-U2P" id="bPi-Yb-2eQ"/>
                         <outlet property="favoriteRecipeButton" destination="wBZ-Gu-QYw" id="YbS-1f-NEr"/>
+                        <outlet property="imageTextRecipeTableView" destination="bMr-uK-grQ" id="Zne-0e-Hix"/>
                         <outlet property="recipeDetailsButton" destination="5gJ-eb-MOc" id="9rd-6Y-EG5"/>
                         <outlet property="recipeNameLabel" destination="rwN-4X-Sgf" id="shp-3X-pOi"/>
                         <outlet property="selectedRecipeImage" destination="CO4-FI-SBY" id="WT2-jg-Yf5"/>
@@ -367,6 +388,7 @@
                     <navigationItem key="navigationItem" title="Reciplease" id="rNj-Ye-rtE"/>
                     <connections>
                         <outlet property="tableViewRecipe" destination="iLS-o7-Tdx" id="GQK-2T-kK0"/>
+                        <segue destination="yDk-J8-hPj" kind="show" identifier="toRecipeDetail" id="bg4-IW-v6N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLK-g1-2F9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -375,6 +397,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="etoile" width="434" height="417"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
