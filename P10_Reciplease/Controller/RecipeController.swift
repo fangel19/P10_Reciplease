@@ -37,7 +37,6 @@ class RecipeController: UIViewController {
         tableViewRecipe.delegate  = self
         tableViewRecipe.dataSource = self
     }
-    
 }
 
 //MARK: - extention
@@ -61,23 +60,12 @@ extension RecipeController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let recipe: Recipe = self.recipes[indexPath.row]
-        cell.configureCell(withImage: recipe.recipeImage, name: recipe.recipeName, ingredient: recipe.recipeIngredient, like: recipe.numberOfLikes, temp: recipe.recipeTemp)
+        cell.configureCell(withImage: recipe.recipeImage, name: recipe.recipeName, ingredient: recipe.ingredients.joined(separator: ", "), like: recipe.numberOfLikes, temp: recipe.recipeTemp)
 //        cell.backgroundColor = .red
         
         
         return cell
     }
-    
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        self.performSegueWithIdentifier("toDetailViewSegue", sender: self)
-//    }
-//
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        let indexPath = tableView.indexPathForSelectedRow;
-//        let cellname = tableView.cellForRowAtIndexPath(indexPath!) as! CardTableViewCell;
-//        let DetailViewController = segue.destinationViewController
-//        DetailViewController.title = cellname.textLabel?.text
-//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -85,14 +73,14 @@ extension RecipeController: UITableViewDelegate, UITableViewDataSource {
         selectedRecipe = self.recipes[indexPath.row]
         performSegue(withIdentifier: "toRecipeDetail", sender: nil)
     }
-//
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toRecipeDetail" {
             let VCDestination = segue.destination as! SelectedRecipeController
             VCDestination.recipeChosen = selectedRecipe
         }
     }
-//
+
     //    MARK: - Alert message
     
     private func alertMessage(title: String, message: String) {

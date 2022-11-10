@@ -28,7 +28,6 @@ class RecipeRequest {
         
         guard let url = route.getURL(ingredients: formattedString)  else { return }
         
-        
         AF.request(url, method: .get).responseDecodable(of: Welcome.self) { response in
             //Créer un tableau
             var recipes = [Recipe]()
@@ -45,8 +44,7 @@ class RecipeRequest {
                     let recipe = Recipe(
                         recipeImage: image,
                         recipeName: hit.recipe.label,
-                        recipeIngredient: hit.recipe.ingredientLines.joined(separator: ","),
-                        recipeIngredientList: hit.recipe.ingredientLines.joined(separator: "\n"),
+                        ingredients: hit.recipe.ingredientLines,
                         recipeTemp: Double(hit.recipe.totalTime),
                         numberOfLikes: Double(hit.recipe.yield),
                         recipeDetailURL: hit.recipe.url

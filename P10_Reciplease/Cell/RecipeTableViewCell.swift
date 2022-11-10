@@ -35,12 +35,10 @@ class RecipeTableViewCell: UITableViewCell {
         recipeTemp.text = temp.recipeTempInt + (" ⏱")
         numberOfLikes.text = like.numberOfLikesInt + (" 👍")
         recipeImage.image = image
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
     }
-    
 }

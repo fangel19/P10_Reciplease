@@ -24,5 +24,4 @@ final class Route {
         
         return URL(string: urlString)
     }
-    
 }

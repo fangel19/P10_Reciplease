@@ -51,7 +51,6 @@ class IngredientController: UIViewController {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
 }
 
 //MARK: - Extension
