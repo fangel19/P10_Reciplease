@@ -333,7 +333,7 @@
         <!--Reciplease-->
         <scene sceneID="2yK-bl-KJY">
             <objects>
-                <viewController id="kN4-aB-QOG" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoriteRecipe" id="kN4-aB-QOG" customClass="FavoriteRecipeController" customModule="P10_Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xMS-KX-IpR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -363,10 +363,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Reciplease" id="HXg-ve-GcR"/>
+                    <connections>
+                        <outlet property="tableViewFavorite" destination="1CU-R8-HLC" id="dnR-cT-eIz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dGu-T3-QkP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="23" y="303"/>
+            <point key="canvasLocation" x="22" y="303"/>
         </scene>
         <!--Reciplease-->
         <scene sceneID="gyU-d3-vef">

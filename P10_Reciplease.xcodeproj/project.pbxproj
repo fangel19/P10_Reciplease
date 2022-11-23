@@ -14,6 +14,8 @@
 		247C7544273C432C0076D163 /* IngredientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C7543273C432C0076D163 /* IngredientService.swift */; };
 		249946A1291CFBEB0034B72B /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2499469F291CFBEB0034B72B /* Reciplease.xcdatamodeld */; };
 		249946A3291CFC540034B72B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249946A2291CFC540034B72B /* CoreDataStack.swift */; };
+		249946A5291DB6230034B72B /* RecipeMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249946A4291DB6230034B72B /* RecipeMO.swift */; };
+		249946A7291DB9880034B72B /* FavoriteRecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249946A6291DB9880034B72B /* FavoriteRecipeController.swift */; };
 		24C79519274587410095D618 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C79518274587410095D618 /* Recipe.swift */; };
 		24C7951B27458BAD0095D618 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C7951A27458BAD0095D618 /* RecipeService.swift */; };
 		24C7951D274696B70095D618 /* RecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C7951C274696B70095D618 /* RecipeController.swift */; };
@@ -63,6 +65,8 @@
 		247C7543273C432C0076D163 /* IngredientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientService.swift; sourceTree = "<group>"; };
 		249946A0291CFBEB0034B72B /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		249946A2291CFC540034B72B /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		249946A4291DB6230034B72B /* RecipeMO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeMO.swift; sourceTree = "<group>"; };
+		249946A6291DB9880034B72B /* FavoriteRecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeController.swift; sourceTree = "<group>"; };
 		24C79518274587410095D618 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		24C7951A27458BAD0095D618 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 		24C7951C274696B70095D618 /* RecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeController.swift; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 				247C753E273C41C20076D163 /* IngredientController.swift */,
 				24C7951C274696B70095D618 /* RecipeController.swift */,
 				243023FA28F9649E005AA516 /* SelectedRecipeController.swift */,
+				249946A6291DB9880034B72B /* FavoriteRecipeController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 			children = (
 				2499469F291CFBEB0034B72B /* Reciplease.xcdatamodeld */,
 				249946A2291CFC540034B72B /* CoreDataStack.swift */,
+				249946A4291DB6230034B72B /* RecipeMO.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -518,6 +524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24DCBAF728EC2B83003C6223 /* RecipeElement.swift in Sources */,
+				249946A7291DB9880034B72B /* FavoriteRecipeController.swift in Sources */,
 				24F0BB1527282D8E00889CF0 /* P10_Reciplease.xcdatamodeld in Sources */,
 				24DCBAF928EC2BFF003C6223 /* IngredientRecipe.swift in Sources */,
 				24C795232746DF070095D618 /* RecipeTableViewCell.swift in Sources */,
@@ -533,6 +540,7 @@
 				24E24E8F27593DF400421680 /* AlamofireRequest.swift in Sources */,
 				24F0BB0B27282D8E00889CF0 /* AppDelegate.swift in Sources */,
 				249946A3291CFC540034B72B /* CoreDataStack.swift in Sources */,
+				249946A5291DB6230034B72B /* RecipeMO.swift in Sources */,
 				24C7951D274696B70095D618 /* RecipeController.swift in Sources */,
 				247C7544273C432C0076D163 /* IngredientService.swift in Sources */,
 				24F0BB0D27282D8E00889CF0 /* SceneDelegate.swift in Sources */,

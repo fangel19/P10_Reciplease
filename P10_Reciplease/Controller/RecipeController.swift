@@ -27,7 +27,7 @@ class RecipeController: UIViewController {
         print(ingredients)
         
         RecipeRequest.shared.getRecipes(ingredients: ingredients, completion: { results in
-
+            
             self.recipes = results
             self.tableViewRecipe.reloadData()
         })
@@ -61,7 +61,7 @@ extension RecipeController: UITableViewDelegate, UITableViewDataSource {
         
         let recipe: Recipe = self.recipes[indexPath.row]
         cell.configureCell(withImage: recipe.recipeImage, name: recipe.recipeName, ingredient: recipe.ingredients.joined(separator: ", "), like: recipe.numberOfLikes, temp: recipe.recipeTemp)
-//        cell.backgroundColor = .red
+        //        cell.backgroundColor = .red
         
         
         return cell
@@ -73,14 +73,14 @@ extension RecipeController: UITableViewDelegate, UITableViewDataSource {
         selectedRecipe = self.recipes[indexPath.row]
         performSegue(withIdentifier: "toRecipeDetail", sender: nil)
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toRecipeDetail" {
             let VCDestination = segue.destination as! SelectedRecipeController
             VCDestination.recipeChosen = selectedRecipe
         }
     }
-
+    
     //    MARK: - Alert message
     
     private func alertMessage(title: String, message: String) {
