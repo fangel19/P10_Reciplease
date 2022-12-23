@@ -6,41 +6,45 @@
 //
 
 import Foundation
+import UIKit
 import CoreData
 
 final class CoreDataStack {
     
     // MARK: - Properties
-    
-    private let persistentContainerName = "Reciplease"
-    var favorites: [RecipeMO] = []
+    //private let persistentContainerName = "Reciplease"
     
     //MARK: - Singleton
     
     static let sharedInstance = CoreDataStack()
+    //    let sharedInstance = UIApplication.shared.delegate as! AppDelegate
     
     // MARK: - Public
     
     var viewContext: NSManagedObjectContext {
-        return CoreDataStack.sharedInstance.persistentContainer.viewContext
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
+//        return CoreDataStack.sharedInstance.persistentContainer.viewContext
     }
     
     // MARK: - Private
     
-    private init() {}
-    
-    private lazy var persistentContainer: NSPersistentContainer = {
+    func retrieve(name: String) -> NSManagedObject?
+    {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Recipe")
+        fetchRequest.predicate = NSPredicate(format: "label LIKE %@", name)
         
-        let container = NSPersistentContainer(name: persistentContainerName)
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo) for: \(storeDescription.description)")
-            }
-        })
-        return container
-    }()
+        do {
+            let entities = try viewContext.fetch(fetchRequest)
+            return entities.first as? NSManagedObject
+            //            for data in entities as! [NSManagedObject]
+            
+        } catch {
+            return nil
+        }
+    }
     
-    func save(recipe: Recipe)
+    func save(recipe: Recipe) -> NSManagedObject?
     {
         let entity = NSEntityDescription.entity(forEntityName: "Recipe", in: viewContext)!
         let recipeEntity = NSManagedObject(entity: entity, insertInto: viewContext)
@@ -53,117 +57,55 @@ final class CoreDataStack {
         
         do {
             try viewContext.save()
-            print("sauvegarder")
+            print("save")
+            return recipeEntity
             
         }
         catch {
-            print("Il y a eu une erreur d'enregistrement")
+            return nil
         }
     }
     
-    func delete(recipe: Recipe) {
-        favorites.removeAll()
+    func deleteData(recipe: NSManagedObject) {
+        //        let context = self.viewContext.managedObjectContext!
+        viewContext.delete(recipe)
         do {
             try viewContext.save()
-            print("supprimer")
-            
+            print("delete")
         }
         catch {
-            print("Il y a eu une erreur de suppression")
         }
-        
     }
     
-    //    func deleteArticle (withId recipeID:UUID) {
-    //        if let indexRecipe = favorites.firstIndex(where: { (article) -> Bool in
-    //            article.id == recipeID
-    //        }) {
-    //            print ("ListManagement.deleteArticle id=\(recipeID) indexArticle=\(indexRecipe)")
-    //            print ("deleteArticle \(favorites [indexRecipe]."articleName")")
-    //            favorites.remove (at: indexRecipe)
-    //            viewContext.deleteArticle(withId: recipeID)
-    //        }
-    //        else {
-    //            print ("ListManagement.deleteArticle id=\(articleId) not found")
-    //        }
-    //    }
-    
-//    func retrieve() -> [Recipe] {
-//
-//        //        let request: NSFetchRequest<RecipeMO> = RecipeMO.fetchRequest()
-//        //        guard let recipeMO = try? CoreDataStack.sharedInstance.viewContext.fetch(request) else { return }
-//        //
-//        //        var completeRecipe = ""
-//        //        for recipe in recipeMO {
-//        //            if let name = recipe.label{
-//        //                completeRecipe += name
-//        //            }
-//
-//
-//
-//        let request = NSFetchRequest<NSManagedObject>(entityName: "RecipeMO")
-//
-//        do {
-//            try? viewContext.fetch(request)
-//            //            favorites = try viewContext.fetch(request)
-//        }  catch let error as NSError {
-//            print("Could not fetch. \(error), \(error.userInfo)")
-//        }
-//
-//    }
-    
-    
-    // Créer une nouvelle requête fetch en utilisant l'entité RecipeMO
-    //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "RecipeMO")
-    
-    // Exécuter la requête fetch et ranger les résultats dans un tableau d'objets  LogItem
-    //        if let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: nil) as? [RecipeMO] {
-    //
-    //            // Créer une alerte et définir son message
-    //            let alert = UIAlertController(title: fetchResults[0].title,
-    //                                          message: fetchResults[0].itemText,
-    //                                          preferredStyle: .Alert)
-    //
-    //            // Afficher l'alerte
-    //            self.presentViewController(alert,
-    //                                       animated: true,
-    //                                       completion: nil)
-    //        }
-    //    }
-    
-    
-    //        let request: NSFetchRequest<NSFetchRequestResult>(entityName: "RecipeMO")
-    //        request.returnsObjectsAsFaults = false
-    //
-    //        do {
-    //            let results = try viewContext.fetch(request)
-    //
-    //            if results.count > 0 {
-    //                for r is results as! [NSManagedObject] {
-    //                    if let nameLabel = r.value(forKey: "Label") as! String {
-    //                        print(nameLabel)
-    //                    }
-    //                }
-    //            }
-    //        } catch {
-    //
-    //        }
-    
-    
-    
-    //private func saveFavory(name: String, ingredients: String, image: UIImage, numberOfLikes: Double, temp: Double, URL: String) {
-    //    let favory = RecipeMO(context: CoreDataStack.sharedInstance.viewContext)
-    //    favory.label = name
-    //    favory.ingredientLines = ingredients
-    //    favory.image = image
-    //    favory.urlRecipe = URL
-    //    favory.temp = temp
-    //    favory.likes = numberOfLikes
-    //
-    //    do {
-    //        try CoreDataStack.sharedInstance.viewContext.save()
-    //    } catch {
-    //        print("We were unable to save \(favory)")
-    //    }
-    //}*/
+    func getFavoryRecipes() -> [Recipe] {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Recipe")
+        do {
+            let results: [NSManagedObject] = try viewContext.fetch(fetchRequest)
+            var recipes: [Recipe] = []
+            results.forEach { result in
+                
+                let imageData: Data? = result.value(forKey: "image") as? Data
+                let image: UIImage? = imageData.flatMap { UIImage(data: $0) }
+                
+                let ingredients: String? = result.value(forKey: "ingredientLines") as? String
+                let ingredientsArray: [String]? = ingredients?.components(separatedBy: ";")
+                
+                let recipe = Recipe(
+                    recipeImage: image ?? UIImage(),
+                    recipeName: result.value(forKey: "label") as! String,
+                    ingredients: ingredientsArray ?? [],
+                    recipeTemp: result.value(forKey: "temp") as! Double,
+                    numberOfLikes: result.value(forKey: "likes") as! Double,
+                    recipeDetailURL: result.value(forKey: "urlRecipe") as! String
+                )
+                
+                recipes.append(recipe)
+            }
+            return recipes
+        }
+        catch {
+            return []
+        }
+    }
 }
+

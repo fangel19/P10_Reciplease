@@ -16,7 +16,12 @@ class FavoriteRecipeController: UIViewController {
     
     // MARK: - Properties
     
-    var favorites: [RecipeMO] = []
+    //    let request: NSFetchRequest<RecipeMO> = RecipeMO.fetchRequest()
+    
+//    var ingredients: [Ingredient] = IngredientService.shared.ingredients
+    
+    var favorites: [Recipe] = []
+    var selectedRecipe: Recipe? = nil
     //    var favory = SelectedRecipeController()
     
     //MARK: - LifeCycle
@@ -24,67 +29,37 @@ class FavoriteRecipeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let request: NSFetchRequest<RecipeMO> = RecipeMO.fetchRequest()
-        guard let recipeMO = try? CoreDataStack.sharedInstance.viewContext.fetch(request) else { return }
-        
-        var completeRecipe = ""
-        for recipe in recipeMO {
-            if let name = recipe.label{
-                completeRecipe += name
-            }
-        }
-        
+        //        CoreDataStack.sharedInstance.getFavoryRecipes()
         //        RecipeRequest.shared.getRecipes(ingredients: ingredients, completion: { results in
         //
-        //            self.recipes = results
-        //            self.tableViewRecipe.reloadData()
+        //            self.favorites = results
+        //            self.tableViewFavorite.reloadData()
         //        })
-        //
-        //        tableViewRecipe.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "recipeCell")
-        //
-        //        tableViewRecipe.delegate  = self
-        //        tableViewRecipe.dataSource = self
-        //    }
-        //}
         
+        fetchRecipe()
+        
+        tableViewFavorite.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "recipeCell")
+        
+        tableViewFavorite.delegate  = self
+        tableViewFavorite.dataSource = self
+        
+        
+        //        guard let recipeMO = try? CoreDataStack.sharedInstance.viewContext.fetch(request) else { return }
         //
-        //        let appDelegate = UIApplication.shared.delegate as! AppDelegate else {
-        //                return
+        //        var completeRecipe = ""
+        //        for recipe in recipeMO {
+        //            if let name = recipe.label{
+        //                completeRecipe += name
         //            }
-        //
-        //        let managedContext =
-        //            appDelegate.persistentContainer.viewContext
-        //
-        //
-        //        let fetchRequest =
-        //          NSFetchRequest<NSManagedObject>(entityName: "Person")
-        //
-        //        //3
-        //        do {
-        //          favorites = try managedContext.fetch(fetchRequest)
-        //        } catch let error as NSError {
-        //          print("Could not fetch. \(error), \(error.userInfo)")
         //        }
+        
     }
-    
-    //
-    //        recipeMO = results
-    //        tableViewFavorite.reloadData()
-    //        //        RecipeMO.shared.getRecipes(ingredients: ingredients, completion: { results in
-    //        //
-    //        //            self.recipes = results
-    //        //            self.tableViewRecipe.reloadData()
-    //    }
-    //
-    //        tableViewFavorite.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "recipeCell")
-    //
-    //    tableViewFavorite.delegate  = self
-    //    tableViewFavorite.dataSource = self
-    //}
-    
-    // Do any additional setup after loading the view.
-    //        tableViewFavorite.delegate  = self
-    //        tableViewFavorite.dataSource = self
+
+    func fetchRecipe() {
+        let recipes: [Recipe] = CoreDataStack.sharedInstance.getFavoryRecipes()
+        self.favorites = recipes
+        tableViewFavorite.reloadData()
+    }
     
 }
 //MARK: - extention
@@ -107,42 +82,46 @@ extension FavoriteRecipeController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        return UITableViewCell()
+        let favory: Recipe = self.favorites[indexPath.row]
         
-        //        let favory: RecipeMO = self.favorites[indexPath.row]
-        //        cell.configureCell(withImage: favory.image, name: favory.label, ingredient: favory.ingredientLines.joined(separator: ", "), like: favory.numberOfLikes, temp: favory.recipeTemp)
-        //        cell.backgroundColor = .red
+        cell.configureCell(withImage: favory.recipeImage, name: favory.recipeName, ingredient: favory.ingredients.joined(separator: ", "), like: favory.numberOfLikes, temp: favory.recipeTemp)
         
-        //
-        //        return cell
-        //    }
-        //}
-        //
-        //override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        //        switch editingStyle {
-        //        case .Delete:
-        //            //remove the deleted item from the model
-        //            let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        //            let context:NSManagedObjectContext = appDel.managedObjectContext!
-        //            context.deleteObject(favorites[indexPath.row] as NSManagedObject)
-        //            favorites.removeAtIndex(indexPath.row)
-        //            context.save(nil)
-        //
-        //           //tableView.reloadData()
-        //            //remove the deleted item from the `UITableView`
-        //            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        //        default:
-        //            return
-        //
-        //        }
+        return cell
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        print("Selected cell at index : \(indexPath.row)")
+        selectedRecipe = self.favorites[indexPath.row]
+        performSegue(withIdentifier: "toRecipeDetailFavory", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toRecipeDetailFavory" {
+            let VCDestination = segue.destination as! SelectedRecipeController
+            VCDestination.recipeChosen = selectedRecipe
+        }
     }
     //
-    //for favory in recipeMO {
-    //    if let name = favory.label,
-    //       let ingredient = favory.ingredientLines,
-    //       let image = favory.image,
-    //       let likes = favory.likes,
-    //       let temp = favory.temp,
-    //       let url = favory.urlRecipe {
+    //override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    //        switch editingStyle {
+    //        case .Delete:
+    //            //remove the deleted item from the model
+    //            let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    //            let context:NSManagedObjectContext = appDel.managedObjectContext!
+    //            context.deleteObject(favorites[indexPath.row] as NSManagedObject)
+    //            favorites.removeAtIndex(indexPath.row)
+    //            context.save(nil)
     //
+    //           //tableView.reloadData()
+    //            //remove the deleted item from the `UITableView`
+    //            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+    //        default:
+    //            return
+    //
+    //        }
+    //}
+    
 }

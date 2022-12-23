@@ -31,7 +31,6 @@
 		24F0BB0B27282D8E00889CF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F0BB0A27282D8E00889CF0 /* AppDelegate.swift */; };
 		24F0BB0D27282D8E00889CF0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F0BB0C27282D8E00889CF0 /* SceneDelegate.swift */; };
 		24F0BB1227282D8E00889CF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24F0BB1027282D8E00889CF0 /* Main.storyboard */; };
-		24F0BB1527282D8E00889CF0 /* P10_Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24F0BB1327282D8E00889CF0 /* P10_Reciplease.xcdatamodeld */; };
 		24F0BB1727282D9400889CF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24F0BB1627282D9400889CF0 /* Assets.xcassets */; };
 		24F0BB1A27282D9400889CF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24F0BB1827282D9400889CF0 /* LaunchScreen.storyboard */; };
 		24F0BB2527282D9500889CF0 /* P10_RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F0BB2427282D9500889CF0 /* P10_RecipleaseTests.swift */; };
@@ -83,7 +82,6 @@
 		24F0BB0A27282D8E00889CF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24F0BB0C27282D8E00889CF0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		24F0BB1127282D8E00889CF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		24F0BB1427282D8E00889CF0 /* P10_Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = P10_Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		24F0BB1627282D9400889CF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24F0BB1927282D9400889CF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24F0BB1B27282D9400889CF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -238,7 +236,6 @@
 				24F0BB0A27282D8E00889CF0 /* AppDelegate.swift */,
 				24F0BB0C27282D8E00889CF0 /* SceneDelegate.swift */,
 				24F0BB1B27282D9400889CF0 /* Info.plist */,
-				24F0BB1327282D8E00889CF0 /* P10_Reciplease.xcdatamodeld */,
 			);
 			path = P10_Reciplease;
 			sourceTree = "<group>";
@@ -525,7 +522,6 @@
 			files = (
 				24DCBAF728EC2B83003C6223 /* RecipeElement.swift in Sources */,
 				249946A7291DB9880034B72B /* FavoriteRecipeController.swift in Sources */,
-				24F0BB1527282D8E00889CF0 /* P10_Reciplease.xcdatamodeld in Sources */,
 				24DCBAF928EC2BFF003C6223 /* IngredientRecipe.swift in Sources */,
 				24C795232746DF070095D618 /* RecipeTableViewCell.swift in Sources */,
 				247C7537273C3ECA0076D163 /* Ingredient.swift in Sources */,
@@ -892,16 +888,6 @@
 			);
 			currentVersion = 249946A0291CFBEB0034B72B /* Reciplease.xcdatamodel */;
 			path = Reciplease.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		24F0BB1327282D8E00889CF0 /* P10_Reciplease.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				24F0BB1427282D8E00889CF0 /* P10_Reciplease.xcdatamodel */,
-			);
-			currentVersion = 24F0BB1427282D8E00889CF0 /* P10_Reciplease.xcdatamodel */;
-			path = P10_Reciplease.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

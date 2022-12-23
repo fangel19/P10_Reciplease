@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SelectedRecipeController: UIViewController {
     
@@ -20,18 +21,31 @@ class SelectedRecipeController: UIViewController {
     @IBOutlet weak var favoriteRecipeButton: UIButton!
     
     // MARK: - Properties
-    
-    //    var titleName: String = ""
     var recipeChosen: Recipe!
-    var recipe: RecipeMO!
+
     
     //MARK: - LifeCycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         hydrateView()
         
+    }
+    
+    private var existingFavorite: NSManagedObject? = nil
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        existingFavorite = CoreDataStack.sharedInstance.retrieve(name: recipeChosen.recipeName)
+        // Expression ternaire
+        //favoriteRecipeButton.tintColor = existingFavorite == nil ? UIColor.gray : UIColor.yellow
+        if existingFavorite == nil
+        {
+            favoriteRecipeButton.tintColor = UIColor.gray
+        }
+        else
+        {
+            favoriteRecipeButton.tintColor = UIColor.yellow
+        }
     }
     
     // View hydration
@@ -41,29 +55,22 @@ class SelectedRecipeController: UIViewController {
         selectedRecipeImage.image = recipeChosen.recipeImage
     }
     
-    // Button star for favorite
     @IBAction func favory(_ sender: UIButton) {
+        if let favorite = existingFavorite
         
-        if sender.isSelected{
+        {
+            favoriteRecipeButton.tintColor = UIColor.gray
+            CoreDataStack.sharedInstance.deleteData(recipe: favorite)
+            existingFavorite = nil
+
+        }
+        else
+        {
             favoriteRecipeButton.tintColor = UIColor.yellow
-            CoreDataStack.sharedInstance.save(recipe: recipeChosen)
+            existingFavorite = CoreDataStack.sharedInstance.save(recipe: recipeChosen)
             
         }
-        else{
-            favoriteRecipeButton.tintColor = UIColor.gray
-            CoreDataStack.sharedInstance.delete(recipe: recipeChosen)
-        }
     }
-    
-    
-    //
-    //        if let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "RecipeVC") as? RecipeController {
-    //
-    //            vc.ingredients = IngredientService.shared.ingredients
-    //            navigationController?.pushViewController(vc, animated: true)
-    //        }
-    
-    
     
     // Button for search recipe
     @IBAction func clicForDetailRecipe(_ sender: Any) {
