@@ -14,6 +14,7 @@ class RecipeService {
     
     private(set) var recipes: [Recipe] = []
     
+    // For append recipe in the array
     func add(recipe: Recipe) {
         
         recipes.append(recipe)

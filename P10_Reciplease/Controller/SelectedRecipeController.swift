@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import SwiftUI
 
 class SelectedRecipeController: UIViewController {
     
@@ -19,56 +20,55 @@ class SelectedRecipeController: UIViewController {
     @IBOutlet weak var recipeDetailsButton: UIButton!
     @IBOutlet weak var recipeNameLabel: UILabel!
     @IBOutlet weak var favoriteRecipeButton: UIButton!
+    @IBOutlet weak var gradientColorBlak: UIView!
     
     // MARK: - Properties
+    
     var recipeChosen: Recipe!
-
     
     //MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hydrateView()
-        
     }
     
     private var existingFavorite: NSManagedObject? = nil
     
+    // Allows you to check if the recipe exists in the favorite and give it the right color
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         existingFavorite = CoreDataStack.sharedInstance.retrieve(name: recipeChosen.recipeName)
-        // Expression ternaire
-        //favoriteRecipeButton.tintColor = existingFavorite == nil ? UIColor.gray : UIColor.yellow
-        if existingFavorite == nil
-        {
+        
+        if existingFavorite == nil {
             favoriteRecipeButton.tintColor = UIColor.gray
-        }
-        else
-        {
+            
+        } else {
             favoriteRecipeButton.tintColor = UIColor.yellow
         }
     }
     
+    //MARK: - Function
+    
     // View hydration
-    func  hydrateView() {
+    private func  hydrateView() {
+        gradientColorBlak.addBlackGradient(frame: gradientColorBlak.bounds, colors: [UIColor.clear, UIColor.black])
         recipeNameLabel.text = recipeChosen.recipeName
         allIngredients.text = recipeChosen.ingredients.joined(separator: "\n")
         selectedRecipeImage.image = recipeChosen.recipeImage
     }
     
+    // To add or remove favorites
     @IBAction func favory(_ sender: UIButton) {
-        if let favorite = existingFavorite
-        
-        {
+        if let favorite = existingFavorite {
             favoriteRecipeButton.tintColor = UIColor.gray
             CoreDataStack.sharedInstance.deleteData(recipe: favorite)
             existingFavorite = nil
-
-        }
-        else
-        {
+            
+        } else {
             favoriteRecipeButton.tintColor = UIColor.yellow
             existingFavorite = CoreDataStack.sharedInstance.save(recipe: recipeChosen)
-            
         }
     }
     

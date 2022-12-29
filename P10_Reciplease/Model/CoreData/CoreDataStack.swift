@@ -11,41 +11,37 @@ import CoreData
 
 final class CoreDataStack {
     
-    // MARK: - Properties
-    //private let persistentContainerName = "Reciplease"
-    
-    //MARK: - Singleton
+    // MARK: - Singleton
     
     static let sharedInstance = CoreDataStack()
-    //    let sharedInstance = UIApplication.shared.delegate as! AppDelegate
     
     // MARK: - Public
     
-    var viewContext: NSManagedObjectContext {
+    public var viewContext: NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
-//        return CoreDataStack.sharedInstance.persistentContainer.viewContext
     }
     
     // MARK: - Private
     
-    func retrieve(name: String) -> NSManagedObject?
-    {
+    // Retrieve the recipe in Core data
+    public func retrieve(name: String) -> NSManagedObject? {
+        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Recipe")
         fetchRequest.predicate = NSPredicate(format: "label LIKE %@", name)
         
         do {
             let entities = try viewContext.fetch(fetchRequest)
             return entities.first as? NSManagedObject
-            //            for data in entities as! [NSManagedObject]
             
         } catch {
             return nil
         }
     }
     
-    func save(recipe: Recipe) -> NSManagedObject?
-    {
+    // For save recipe
+    public func save(recipe: Recipe) -> NSManagedObject? {
+        
         let entity = NSEntityDescription.entity(forEntityName: "Recipe", in: viewContext)!
         let recipeEntity = NSManagedObject(entity: entity, insertInto: viewContext)
         recipeEntity.setValue(recipe.recipeName, forKey: "label")
@@ -60,24 +56,26 @@ final class CoreDataStack {
             print("save")
             return recipeEntity
             
-        }
-        catch {
+        } catch {
             return nil
         }
     }
     
-    func deleteData(recipe: NSManagedObject) {
+    // for delete recipe
+    public func deleteData(recipe: NSManagedObject) {
         //        let context = self.viewContext.managedObjectContext!
         viewContext.delete(recipe)
         do {
             try viewContext.save()
             print("delete")
-        }
-        catch {
+            
+        } catch {
         }
     }
     
-    func getFavoryRecipes() -> [Recipe] {
+    // get favorite recipes that will be used to display views
+    public func getFavoryRecipes() -> [Recipe] {
+        
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Recipe")
         do {
             let results: [NSManagedObject] = try viewContext.fetch(fetchRequest)
@@ -98,12 +96,11 @@ final class CoreDataStack {
                     numberOfLikes: result.value(forKey: "likes") as! Double,
                     recipeDetailURL: result.value(forKey: "urlRecipe") as! String
                 )
-                
                 recipes.append(recipe)
             }
             return recipes
-        }
-        catch {
+            
+        } catch {
             return []
         }
     }

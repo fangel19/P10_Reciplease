@@ -21,20 +21,20 @@ class IngredientController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
+     }
+    
+    //MARK: - @IBACTION
     
     // Add button to add ingredients in tableView
     @IBAction func tappedAddIngredient(_ sender: Any) {
         
-        guard let name = nameIngredientTextField.text else {
-            return
-        }
+        guard let name = nameIngredientTextField.text else { return }
         
         let ingredient = Ingredient(name: name)
         IngredientService.shared.add(ingredient: ingredient)
         tableView?.reloadData()
     }
-    
+        
     // Button for remove ingredients in tableView
     @IBAction func clearButton(_ sender: Any) {
         
@@ -63,7 +63,6 @@ extension IngredientController: UITextFieldDelegate,
         textField.resignFirstResponder()
         return true
     }
-    
     // Ingredient display in my tableview
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

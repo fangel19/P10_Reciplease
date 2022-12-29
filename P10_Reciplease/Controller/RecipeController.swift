@@ -17,25 +17,63 @@ class RecipeController: UIViewController {
     // MARK: - Properties
     
     var ingredients: [Ingredient] = IngredientService.shared.ingredients
-    var recipes: [Recipe] = []
-    var selectedRecipe: Recipe? = nil
+    private var recipes: [Recipe] = []
+    private var selectedRecipe: Recipe? = nil
+    var message = MessageAlert()
     
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(ingredients)
+        
+        let loader = loader()
         
         RecipeRequest.shared.getRecipes(ingredients: ingredients, completion: { results in
             
-            self.recipes = results
-            self.tableViewRecipe.reloadData()
+            //            self.recipes = results
+            //            self.tableViewRecipe.reloadData()
+            
+            if results.isEmpty {
+                self.stopLoader(loader: loader)
+                self.message.alertMessage(title: "error", message: "There is no recipe with this ingredient check your ingredients")
+                print("error")
+
+            } else {
+                self.recipes = results
+                self.tableViewRecipe.reloadData()
+            }
+            
+            self.stopLoader(loader: loader)
         })
         
         tableViewRecipe.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "recipeCell")
         
         tableViewRecipe.delegate  = self
         tableViewRecipe.dataSource = self
+    }
+    
+    //MARK: - Function
+    
+    // Loader with message
+    private func loader() -> UIAlertController {
+        
+        let alert = UIAlertController(title: nil, message: "Please wait", preferredStyle: .alert)
+        let indicator = UIActivityIndicatorView(style: .large)
+        
+        indicator.center = CGPoint(x: 140, y: 100)
+        indicator.hidesWhenStopped = true
+        indicator.startAnimating()
+        alert.view.addSubview(indicator)
+        present(alert, animated: true, completion: nil)
+        
+        return alert
+    }
+    
+    // Loader stop
+    private func stopLoader(loader: UIAlertController) {
+        DispatchQueue.main.async {
+            loader.dismiss(animated: true, completion: nil)
+        }
     }
 }
 
@@ -61,33 +99,24 @@ extension RecipeController: UITableViewDelegate, UITableViewDataSource {
         
         let recipe: Recipe = self.recipes[indexPath.row]
         cell.configureCell(withImage: recipe.recipeImage, name: recipe.recipeName, ingredient: recipe.ingredients.joined(separator: ", "), like: recipe.numberOfLikes, temp: recipe.recipeTemp)
-        //        cell.backgroundColor = .red
-        
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    // To identify the custom cell
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         print("Selected cell at index : \(indexPath.row)")
         selectedRecipe = self.recipes[indexPath.row]
         performSegue(withIdentifier: "toRecipeDetail", sender: nil)
     }
     
+    //Show custom cell in this view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toRecipeDetail" {
             let VCDestination = segue.destination as! SelectedRecipeController
             VCDestination.recipeChosen = selectedRecipe
         }
-    }
-    
-    //    MARK: - Alert message
-    
-    private func alertMessage(title: String, message: String) {
-        
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        present(alertVC, animated: true, completion: nil)
     }
 }
 

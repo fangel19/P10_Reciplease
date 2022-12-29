@@ -17,4 +17,3 @@ struct Recipe {
     let numberOfLikes: Double
     let recipeDetailURL: String
 }
-

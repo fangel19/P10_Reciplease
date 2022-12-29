@@ -6,28 +6,37 @@
 //
 
 import UIKit
+import SwiftUI
 
 class RecipeTableViewCell: UITableViewCell {
     
-//Name of my identifier
+    //Name of my identifier
     static let reusableIdentifier = "recipeCell"
-        
+    
     //MARK: - Outlets
-
+    
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var recipeIngredient: UILabel!
     @IBOutlet weak var numberOfLikes: UILabel!
     @IBOutlet weak var recipeTemp: UILabel!
     @IBOutlet weak var recipeView: UIView!
+    @IBOutlet weak var gradientView: UIView!
     
-// MARK: - LifeCycle
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
+    // MARK: - LifeCycle
+    private var gradientAdded: Bool = false
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        guard !gradientAdded else { return }
+        DispatchQueue.main.async {
+            self.gradientView.addBlackGradient(frame: self.gradientView.bounds, colors: [UIColor.clear, UIColor.black])
+            self.gradientAdded = true
+        }
     }
-        
+    
+    //MARK: - Function
+    
+    // To configure the custom cell
     func configureCell(withImage image: UIImage, name: String, ingredient: String,  like: Double, temp: Double) {
         
         recipeName.text = name
@@ -35,10 +44,5 @@ class RecipeTableViewCell: UITableViewCell {
         recipeTemp.text = temp.recipeTempInt + (" ⏱")
         numberOfLikes.text = like.numberOfLikesInt + (" 👍")
         recipeImage.image = image
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
     }
 }

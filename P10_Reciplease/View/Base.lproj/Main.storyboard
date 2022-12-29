@@ -19,6 +19,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" systemColor="tintColor"/>
+                        <color key="barTintColor" red="0.96078431369999995" green="0.95294117649999999" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
@@ -223,7 +224,7 @@
                                                 <fragment content="All ingredients">
                                                     <attributes>
                                                         <font key="NSFont" size="17" name="Chalkduster"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="9" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
@@ -233,13 +234,19 @@
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwN-4X-Sgf">
-                                <rect key="frame" x="0.0" y="234" width="375" height="25"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jKh-Hd-Q3I">
+                                <rect key="frame" x="0.0" y="44" width="375" height="220"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="dXQ-kK-9oL"/>
+                                    <constraint firstAttribute="height" constant="220" id="H3a-fI-qGY"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwN-4X-Sgf">
+                                <rect key="frame" x="0.0" y="209" width="375" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="dXQ-kK-9oL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5gJ-eb-MOc">
@@ -281,14 +288,18 @@
                             <constraint firstItem="Byo-wd-f5G" firstAttribute="trailing" secondItem="wBZ-Gu-QYw" secondAttribute="trailing" constant="20" id="1fH-XA-XNS"/>
                             <constraint firstItem="Byo-wd-f5G" firstAttribute="trailing" secondItem="5gJ-eb-MOc" secondAttribute="trailing" constant="20" id="5HL-gz-dqZ"/>
                             <constraint firstItem="5gJ-eb-MOc" firstAttribute="leading" secondItem="Byo-wd-f5G" secondAttribute="leading" constant="20" id="GlI-ap-5hx"/>
+                            <constraint firstItem="jKh-Hd-Q3I" firstAttribute="trailing" secondItem="Byo-wd-f5G" secondAttribute="trailing" id="GtK-mb-Ta7"/>
+                            <constraint firstItem="jKh-Hd-Q3I" firstAttribute="width" secondItem="bMr-uK-grQ" secondAttribute="width" id="IHd-MT-CcE"/>
                             <constraint firstItem="5gJ-eb-MOc" firstAttribute="top" secondItem="bMr-uK-grQ" secondAttribute="bottom" constant="8" id="JvS-1D-Xcx"/>
                             <constraint firstItem="wBZ-Gu-QYw" firstAttribute="top" secondItem="Byo-wd-f5G" secondAttribute="top" constant="10" id="dF2-ES-RTR"/>
                             <constraint firstItem="bMr-uK-grQ" firstAttribute="top" secondItem="Byo-wd-f5G" secondAttribute="top" id="h3B-q7-t5w"/>
-                            <constraint firstItem="rwN-4X-Sgf" firstAttribute="top" secondItem="Byo-wd-f5G" secondAttribute="top" constant="190" id="jFY-Fo-YkO"/>
+                            <constraint firstItem="jKh-Hd-Q3I" firstAttribute="top" secondItem="Byo-wd-f5G" secondAttribute="top" id="iir-Yg-sxt"/>
+                            <constraint firstItem="rwN-4X-Sgf" firstAttribute="top" secondItem="Byo-wd-f5G" secondAttribute="top" constant="165" id="jFY-Fo-YkO"/>
                             <constraint firstItem="bMr-uK-grQ" firstAttribute="leading" secondItem="Byo-wd-f5G" secondAttribute="leading" id="kJN-nj-kNP"/>
                             <constraint firstItem="Byo-wd-f5G" firstAttribute="trailing" secondItem="rwN-4X-Sgf" secondAttribute="trailing" id="kdb-WR-6EH"/>
                             <constraint firstItem="rwN-4X-Sgf" firstAttribute="leading" secondItem="Byo-wd-f5G" secondAttribute="leading" id="qFL-zu-X2v"/>
                             <constraint firstItem="Byo-wd-f5G" firstAttribute="bottom" secondItem="5gJ-eb-MOc" secondAttribute="bottom" id="r1O-ij-dQ3"/>
+                            <constraint firstItem="jKh-Hd-Q3I" firstAttribute="leading" secondItem="Byo-wd-f5G" secondAttribute="leading" id="xKe-MT-NG0"/>
                             <constraint firstItem="Byo-wd-f5G" firstAttribute="trailing" secondItem="bMr-uK-grQ" secondAttribute="trailing" id="zG7-24-mzr"/>
                         </constraints>
                     </view>
@@ -296,6 +307,7 @@
                     <connections>
                         <outlet property="allIngredients" destination="TXS-We-U2P" id="bPi-Yb-2eQ"/>
                         <outlet property="favoriteRecipeButton" destination="wBZ-Gu-QYw" id="YbS-1f-NEr"/>
+                        <outlet property="gradientColorBlak" destination="jKh-Hd-Q3I" id="t1d-Mj-jwy"/>
                         <outlet property="imageTextRecipeTableView" destination="bMr-uK-grQ" id="Zne-0e-Hix"/>
                         <outlet property="recipeDetailsButton" destination="5gJ-eb-MOc" id="9rd-6Y-EG5"/>
                         <outlet property="recipeNameLabel" destination="rwN-4X-Sgf" id="shp-3X-pOi"/>

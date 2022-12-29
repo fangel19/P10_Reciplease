@@ -16,25 +16,13 @@ class FavoriteRecipeController: UIViewController {
     
     // MARK: - Properties
     
-    //    let request: NSFetchRequest<RecipeMO> = RecipeMO.fetchRequest()
-    
-//    var ingredients: [Ingredient] = IngredientService.shared.ingredients
-    
-    var favorites: [Recipe] = []
-    var selectedRecipe: Recipe? = nil
-    //    var favory = SelectedRecipeController()
+    private var favorites: [Recipe] = []
+    private var selectedRecipe: Recipe? = nil
     
     //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //        CoreDataStack.sharedInstance.getFavoryRecipes()
-        //        RecipeRequest.shared.getRecipes(ingredients: ingredients, completion: { results in
-        //
-        //            self.favorites = results
-        //            self.tableViewFavorite.reloadData()
-        //        })
         
         fetchRecipe()
         
@@ -42,26 +30,21 @@ class FavoriteRecipeController: UIViewController {
         
         tableViewFavorite.delegate  = self
         tableViewFavorite.dataSource = self
-        
-        
-        //        guard let recipeMO = try? CoreDataStack.sharedInstance.viewContext.fetch(request) else { return }
-        //
-        //        var completeRecipe = ""
-        //        for recipe in recipeMO {
-        //            if let name = recipe.label{
-        //                completeRecipe += name
-        //            }
-        //        }
-        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+         super.viewWillAppear(animated)
+         fetchRecipe()
+       }
 
+    // Allows you to update the favorites view as soon as you open it
     func fetchRecipe() {
         let recipes: [Recipe] = CoreDataStack.sharedInstance.getFavoryRecipes()
         self.favorites = recipes
         tableViewFavorite.reloadData()
     }
-    
 }
+
 //MARK: - extention
 
 // Recipe display in my tableview
@@ -87,10 +70,9 @@ extension FavoriteRecipeController: UITableViewDelegate, UITableViewDataSource {
         cell.configureCell(withImage: favory.recipeImage, name: favory.recipeName, ingredient: favory.ingredients.joined(separator: ", "), like: favory.numberOfLikes, temp: favory.recipeTemp)
         
         return cell
-        
     }
     
-    
+    // To identify the custom cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         print("Selected cell at index : \(indexPath.row)")
@@ -98,30 +80,11 @@ extension FavoriteRecipeController: UITableViewDelegate, UITableViewDataSource {
         performSegue(withIdentifier: "toRecipeDetailFavory", sender: nil)
     }
     
+    //Show custom cell in this view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toRecipeDetailFavory" {
             let VCDestination = segue.destination as! SelectedRecipeController
             VCDestination.recipeChosen = selectedRecipe
         }
     }
-    //
-    //override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    //        switch editingStyle {
-    //        case .Delete:
-    //            //remove the deleted item from the model
-    //            let appDel:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    //            let context:NSManagedObjectContext = appDel.managedObjectContext!
-    //            context.deleteObject(favorites[indexPath.row] as NSManagedObject)
-    //            favorites.removeAtIndex(indexPath.row)
-    //            context.save(nil)
-    //
-    //           //tableView.reloadData()
-    //            //remove the deleted item from the `UITableView`
-    //            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-    //        default:
-    //            return
-    //
-    //        }
-    //}
-    
 }
