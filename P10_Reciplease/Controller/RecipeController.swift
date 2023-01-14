@@ -19,7 +19,6 @@ class RecipeController: UIViewController {
     var ingredients: [Ingredient] = IngredientService.shared.ingredients
     private var recipes: [Recipe] = []
     private var selectedRecipe: Recipe? = nil
-    var message = MessageAlert()
     
     //MARK: - LifeCycle
     
@@ -28,22 +27,20 @@ class RecipeController: UIViewController {
         
         let loader = loader()
         
-        RecipeRequest.shared.getRecipes(ingredients: ingredients, completion: { results in
+        RecipeRequest.shared.getRecipes(ingredients: ingredients, completion: { results, error in
             
-            //            self.recipes = results
-            //            self.tableViewRecipe.reloadData()
+            self.recipes = results
+            self.tableViewRecipe.reloadData()
             
-            if results.isEmpty {
-                self.stopLoader(loader: loader)
-                self.message.alertMessage(title: "error", message: "There is no recipe with this ingredient check your ingredients")
-                print("error")
-
-            } else {
-                self.recipes = results
-                self.tableViewRecipe.reloadData()
-            }
-            
-            self.stopLoader(loader: loader)
+            self.stopLoader(loader: loader, completion: {
+                if results.isEmpty {
+                    self.alertMessage(title: "error", message: "There is no recipe with this ingredient check your ingredients")
+                }
+                else if let error = error
+                {
+                    self.alertMessage(title: "error", message: error.localizedDescription)
+                }
+            })
         })
         
         tableViewRecipe.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "recipeCell")
@@ -70,9 +67,9 @@ class RecipeController: UIViewController {
     }
     
     // Loader stop
-    private func stopLoader(loader: UIAlertController) {
+    private func stopLoader(loader: UIAlertController, completion: @escaping () -> Void = {}) {
         DispatchQueue.main.async {
-            loader.dismiss(animated: true, completion: nil)
+            loader.dismiss(animated: true, completion: completion)
         }
     }
 }

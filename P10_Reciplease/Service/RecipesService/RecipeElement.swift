@@ -18,5 +18,4 @@ struct RecipeElement: Codable {
     let ingredients: [IngredientRecipe]
     let calories, totalWeight: Double
     let totalTime: Int
-    let cuisineType: [String]
 }

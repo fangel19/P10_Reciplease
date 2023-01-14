@@ -12,7 +12,9 @@
 		242B4E322955FBAF004CC021 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B4E312955FBAF004CC021 /* FakeResponseData.swift */; };
 		242B4E3A2955FEED004CC021 /* Recipe.json in Resources */ = {isa = PBXBuildFile; fileRef = 242B4E392955FEED004CC021 /* Recipe.json */; };
 		243023FB28F9649E005AA516 /* SelectedRecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243023FA28F9649E005AA516 /* SelectedRecipeController.swift */; };
+		24443B5F296867FC00FAB496 /* CoreDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24443B5E296867FC00FAB496 /* CoreDataTest.swift */; };
 		245B7F9D295DE4FB008E8276 /* RecipeTestServiceAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B7F9C295DE4FB008E8276 /* RecipeTestServiceAlamofire.swift */; };
+		247C0613297174FC007DC86F /* FakeContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C0612297174FC007DC86F /* FakeContext.swift */; };
 		247C7537273C3ECA0076D163 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C7536273C3ECA0076D163 /* Ingredient.swift */; };
 		247C753F273C41C20076D163 /* IngredientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C753E273C41C20076D163 /* IngredientController.swift */; };
 		247C7544273C432C0076D163 /* IngredientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C7543273C432C0076D163 /* IngredientService.swift */; };
@@ -38,7 +40,6 @@
 		24F0BB1227282D8E00889CF0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24F0BB1027282D8E00889CF0 /* Main.storyboard */; };
 		24F0BB1727282D9400889CF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24F0BB1627282D9400889CF0 /* Assets.xcassets */; };
 		24F0BB1A27282D9400889CF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24F0BB1827282D9400889CF0 /* LaunchScreen.storyboard */; };
-		24F0BB2527282D9500889CF0 /* P10_RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F0BB2427282D9500889CF0 /* P10_RecipleaseTests.swift */; };
 		24F0BB3027282D9500889CF0 /* P10_RecipleaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F0BB2F27282D9500889CF0 /* P10_RecipleaseUITests.swift */; };
 		2B1E98C1994F242C965D547D /* Pods_P10_Reciplease_P10_RecipleaseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73E4EC2A5DA79405BC09B1B /* Pods_P10_Reciplease_P10_RecipleaseUITests.framework */; };
 		4E3C54C2A92CF77C323465C8 /* Pods_P10_RecipleaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DEC6DA988ED9F5351965F2 /* Pods_P10_RecipleaseTests.framework */; };
@@ -67,7 +68,9 @@
 		242B4E312955FBAF004CC021 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
 		242B4E392955FEED004CC021 /* Recipe.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Recipe.json; sourceTree = "<group>"; };
 		243023FA28F9649E005AA516 /* SelectedRecipeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRecipeController.swift; sourceTree = "<group>"; };
+		24443B5E296867FC00FAB496 /* CoreDataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTest.swift; sourceTree = "<group>"; };
 		245B7F9C295DE4FB008E8276 /* RecipeTestServiceAlamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTestServiceAlamofire.swift; sourceTree = "<group>"; };
+		247C0612297174FC007DC86F /* FakeContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeContext.swift; sourceTree = "<group>"; };
 		247C7536273C3ECA0076D163 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		247C753E273C41C20076D163 /* IngredientController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientController.swift; sourceTree = "<group>"; };
 		247C7543273C432C0076D163 /* IngredientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientService.swift; sourceTree = "<group>"; };
@@ -96,7 +99,6 @@
 		24F0BB1927282D9400889CF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24F0BB1B27282D9400889CF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24F0BB2027282D9500889CF0 /* P10_RecipleaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = P10_RecipleaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		24F0BB2427282D9500889CF0 /* P10_RecipleaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P10_RecipleaseTests.swift; sourceTree = "<group>"; };
 		24F0BB2627282D9500889CF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24F0BB2B27282D9500889CF0 /* P10_RecipleaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = P10_RecipleaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24F0BB2F27282D9500889CF0 /* P10_RecipleaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P10_RecipleaseUITests.swift; sourceTree = "<group>"; };
@@ -254,11 +256,12 @@
 		24F0BB2327282D9500889CF0 /* P10_RecipleaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				24F0BB2427282D9500889CF0 /* P10_RecipleaseTests.swift */,
 				242B4E392955FEED004CC021 /* Recipe.json */,
 				242B4E312955FBAF004CC021 /* FakeResponseData.swift */,
 				245B7F9C295DE4FB008E8276 /* RecipeTestServiceAlamofire.swift */,
 				242B4E2D2955ED2D004CC021 /* URLTest.swift */,
+				247C0612297174FC007DC86F /* FakeContext.swift */,
+				24443B5E296867FC00FAB496 /* CoreDataTest.swift */,
 				24F0BB2627282D9500889CF0 /* Info.plist */,
 			);
 			path = P10_RecipleaseTests;
@@ -565,8 +568,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24443B5F296867FC00FAB496 /* CoreDataTest.swift in Sources */,
 				245B7F9D295DE4FB008E8276 /* RecipeTestServiceAlamofire.swift in Sources */,
-				24F0BB2527282D9500889CF0 /* P10_RecipleaseTests.swift in Sources */,
+				247C0613297174FC007DC86F /* FakeContext.swift in Sources */,
 				242B4E2E2955ED2D004CC021 /* URLTest.swift in Sources */,
 				242B4E322955FBAF004CC021 /* FakeResponseData.swift in Sources */,
 			);

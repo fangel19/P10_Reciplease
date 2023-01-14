@@ -9,6 +9,7 @@ import Foundation
 
 class FakeResponseData {
     
+    
     // MARK: - Response
     
     static let responseOK = HTTPURLResponse(url: URL(string: "https://openclassrooms.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
@@ -25,7 +26,7 @@ class FakeResponseData {
         return data
     }
     
-    static let IncorrectData = "erreur" .data(using: .utf8)!
+    static let incorrectData = "erreur" .data(using: .utf8)!
     
     // MARK: - Error
          

@@ -10,52 +10,96 @@ import Alamofire
 @testable import P10_Reciplease
 
 class RecipeTestServiceAlamofire: XCTestCase {
-
+    
     var recipeService: RecipeRequest!
     
     override func setUp() {
         super.setUp()
-        
-        URLTest.loadingHandler = { request in
-            let response: HTTPURLResponse = FakeResponseData.responseOK
-            let error: Error? = nil
-            let data = FakeResponseData.recipeCorrectData
-            return (response, data, error)
-        }
-        
-        let configuration = URLSessionConfiguration.ephemeral
-        configuration.protocolClasses = [URLTest.self]
+        let configuration = URLSessionConfiguration.af.ephemeral
+        configuration.protocolClasses = [URLTest.self] + (configuration.protocolClasses ?? [])
         let session = Alamofire.Session(configuration: configuration)
-        
         recipeService = RecipeRequest(session: session)
     }
     
     func testGetRecipeShouldPostFailedCallbackIfError() {
         
         URLTest.loadingHandler = { request in
-            let response: HTTPURLResponse = FakeResponseData.responseKO
+            let response = FakeResponseData.responseKO
             let error: Error? = FakeResponseData.conversionError
             let data: Data? = nil
             return (response, data, error)
         }
         
-        let configuration = URLSessionConfiguration.ephemeral
-        configuration.protocolClasses = [URLTest.self]
-        let session = Alamofire.Session(configuration: configuration)
+        let expectation = XCTestExpectation(description: "Result has arrived")
         
-        recipeService = RecipeRequest(session: session)
+        recipeService.getRecipes(ingredients: [Ingredient.init(name: "Lemon")], completion: { (result, error) in
+            
+            XCTAssertTrue(result.isEmpty)
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        })
+        wait(for: [expectation], timeout: 2)
         
-        let expectation = XCTestExpectation(description: "wait for queue change.")
+    }
+    
+    func testGetRecipeShouldPostFailedCallbackIncorrectData() {
         
-//        let response = recipeService.getRecipes(ingredients: ["lemon"], completion: { results in
-//
-//            guard case .failure(let error) = results else {
-//                XCTFail("Fail")
-//                return
-//            }
-//            XCTAssertNotNil(error)
-//            expectation.fulfill()
-//        })
-//        wait(for: [expectation], timeout: 2)
+        URLTest.loadingHandler = { request in
+            let response = FakeResponseData.responseOK
+            let error: Error? = nil
+            let data: Data? = FakeResponseData.incorrectData
+            return (response, data, error)
+        }
+        
+        let expectation = XCTestExpectation(description: "Wait for queue change")
+        
+        recipeService.getRecipes(ingredients: [Ingredient.init(name: "Lemon")], completion: { (result, error) in
+            
+            XCTAssertTrue(result.isEmpty)
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        })
+        wait(for: [expectation], timeout: 2)
+        
+    }
+    
+    func testGetRecipeShouldPostFailedCallbackIfIncorrectResponse() {
+        
+        URLTest.loadingHandler = { request in
+            let response = FakeResponseData.responseKO
+            let error: Error? = nil
+            let data: Data? = FakeResponseData.incorrectData
+            return (response, data, error)
+        }
+        
+        let expectation = XCTestExpectation(description: "Wait for queue change")
+        
+        recipeService.getRecipes(ingredients: [Ingredient.init(name: "Lemon")], completion: { (result, error) in
+
+            XCTAssertTrue(result.isEmpty)
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        })
+        wait(for: [expectation], timeout: 2)
+        
+    }
+    
+    func testshouldGetRecipe() {
+        
+        URLTest.loadingHandler = { request in
+            let response = FakeResponseData.responseOK
+            let error: Error? = nil
+            let data: Data? = FakeResponseData.recipeCorrectData
+            return (response, data, error)
+        }
+        
+        let expectation = XCTestExpectation(description: "Wait for queue change")
+        
+        recipeService.getRecipes(ingredients: [Ingredient.init(name: "Lemon")], completion: { (result, error) in
+            XCTAssertTrue(result.contains(where: { $0.recipeName == "Lemon Confit" }))
+            expectation.fulfill()
+        })
+        wait(for: [expectation], timeout: 2)
+        
     }
 }

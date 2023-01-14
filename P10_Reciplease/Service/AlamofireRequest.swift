@@ -24,7 +24,7 @@ class RecipeRequest {
     // MARK: - Method
     
     // For get recipes through its url
-    func getRecipes(ingredients: [Ingredient], completion: @escaping ([Recipe]) -> Void) {
+    func getRecipes(ingredients: [Ingredient], completion: @escaping ([Recipe], Error?) -> Void) {
         
         AF.cancelAllRequests()
         
@@ -57,7 +57,7 @@ class RecipeRequest {
                     recipes.append(recipe)
                 }
             }
-            completion(recipes)
+            completion(recipes, response.error)
         }
     }
 }

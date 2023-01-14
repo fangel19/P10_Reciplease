@@ -33,6 +33,7 @@ class IngredientController: UIViewController {
         let ingredient = Ingredient(name: name)
         IngredientService.shared.add(ingredient: ingredient)
         tableView?.reloadData()
+        nameIngredientTextField.text = ""
     }
         
     // Button for remove ingredients in tableView

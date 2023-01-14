@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreData
 
-final class CoreDataStack {
+class CoreDataStack {
     
     // MARK: - Singleton
     
