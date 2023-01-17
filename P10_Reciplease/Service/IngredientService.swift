@@ -23,7 +23,6 @@ class IngredientService {
     
     // For append ingredient
     func add(ingredient: Ingredient) {
-        
         ingredients.append(ingredient)
     }
     

@@ -60,7 +60,6 @@ extension IngredientController: UITextFieldDelegate,
                                 UITableViewDataSource {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         textField.resignFirstResponder()
         return true
     }
@@ -74,7 +73,7 @@ extension IngredientController: UITextFieldDelegate,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
         let ingredient = IngredientService.shared.ingredients[indexPath.row]
         cell.textLabel?.text = ingredient.name

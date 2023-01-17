@@ -1,0 +1,8 @@
+Target dependency graph (4 targets)
+Alamofire in Pods, no dependencies
+Pods-P10_Reciplease in Pods, depends on:
+Alamofire in Pods (explicit)
+Pods-P10_Reciplease-P10_RecipleaseUITests in Pods, depends on:
+Alamofire in Pods (explicit)
+Pods-P10_RecipleaseTests in Pods, depends on:
+Pods-P10_Reciplease in Pods (explicit)

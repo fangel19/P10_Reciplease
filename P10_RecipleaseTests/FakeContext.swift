@@ -38,5 +38,4 @@ class TestContext {
     static var testContext : NSManagedObjectContext {
         return testContainer.viewContext
     }
-
 }

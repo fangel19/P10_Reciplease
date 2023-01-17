@@ -11,12 +11,10 @@ extension Double  {
     
 // change string to int
     var recipeTempInt: String {
-        
         return "\(Int(self))"
     }
     
     var numberOfLikesInt: String {
-        
         return "\(Int(self))"
     }
 }

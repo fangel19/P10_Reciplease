@@ -39,7 +39,6 @@ class RecipeTestServiceAlamofire: XCTestCase {
             expectation.fulfill()
         })
         wait(for: [expectation], timeout: 2)
-        
     }
     
     func testGetRecipeShouldPostFailedCallbackIncorrectData() {
@@ -60,7 +59,6 @@ class RecipeTestServiceAlamofire: XCTestCase {
             expectation.fulfill()
         })
         wait(for: [expectation], timeout: 2)
-        
     }
     
     func testGetRecipeShouldPostFailedCallbackIfIncorrectResponse() {
@@ -81,7 +79,6 @@ class RecipeTestServiceAlamofire: XCTestCase {
             expectation.fulfill()
         })
         wait(for: [expectation], timeout: 2)
-        
     }
     
     func testshouldGetRecipe() {
@@ -100,6 +97,5 @@ class RecipeTestServiceAlamofire: XCTestCase {
             expectation.fulfill()
         })
         wait(for: [expectation], timeout: 2)
-        
     }
 }
