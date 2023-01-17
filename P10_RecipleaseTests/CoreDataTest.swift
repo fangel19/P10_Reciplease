@@ -14,7 +14,7 @@ class CoreDataTest: XCTestCase {
     
     //    // MARK: - Properties
     
-    var coreDataStack: CoreDataStack!
+    var coreDataStack: CoreDataStack = CoreDataStack.sharedInstance
     
     func recipeTest() -> Recipe {
         
@@ -23,7 +23,7 @@ class CoreDataTest: XCTestCase {
        "https://avatars.githubusercontent.com/u/62841864?s=96&v=4"
             let imageUrl = URL(string: imageSorbetURL)
             let imageData = try! Data(contentsOf: imageUrl!)
-            return UIImage(data: imageData as Data)!
+            return UIImage(data: imageData)!
         }()
         return Recipe(
             
@@ -65,9 +65,9 @@ class CoreDataTest: XCTestCase {
         let product1 = recipeTest()
         
         
-        XCTAssertNil(coreDataStack?.retrieve(name: product1.recipeName))
+        XCTAssertNil(coreDataStack.retrieve(name: product1.recipeName))
                 
-        XCTAssertEqual(coreDataStack?.getFavoryRecipes().first?.recipeDetailURL, product1.recipeDetailURL)
+        XCTAssertEqual(coreDataStack.getFavoryRecipes().first?.recipeDetailURL, product1.recipeDetailURL)
         XCTAssertNotNil(coreDataStack.retrieve(name: product1.recipeName))
         
         let saved = coreDataStack.save(recipe: product1)
@@ -82,8 +82,8 @@ class CoreDataTest: XCTestCase {
         let product1 = recipeTest()
         let product2 = recipeTest2()
         
-        XCTAssertNil(coreDataStack?.retrieve(name: product1.recipeName))
-        XCTAssertNil(coreDataStack?.retrieve(name: product2.recipeName))
+        XCTAssertNil(coreDataStack.retrieve(name: product1.recipeName))
+        XCTAssertNil(coreDataStack.retrieve(name: product2.recipeName))
         
         coreDataStack.save(recipe: product1)
         coreDataStack.save(recipe: product2)

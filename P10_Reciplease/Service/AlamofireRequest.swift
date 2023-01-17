@@ -33,7 +33,7 @@ class RecipeRequest {
         
         guard let url = route.getURL(ingredients: formattedString)  else { return }
         
-        AF.request(url, method: .get).responseDecodable(of: Welcome.self) { response in
+        session.request(url, method: .get).responseDecodable(of: Welcome.self) { response in
             //Create an array
             var recipes = [Recipe]()
             
