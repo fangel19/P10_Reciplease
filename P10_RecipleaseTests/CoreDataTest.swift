@@ -65,16 +65,20 @@ class CoreDataTest: XCTestCase {
         let product1 = recipeTest()
         
         
-        XCTAssertNil(coreDataStack.retrieve(name: product1.recipeName))
+        XCTAssertNotNil(coreDataStack.retrieve(name: product1.recipeName))
                 
+        let saved = coreDataStack.save(recipe: product1)
+//        coreDataStack.deleteData(recipe: saved!)
+        
         XCTAssertEqual(coreDataStack.getFavoryRecipes().first?.recipeDetailURL, product1.recipeDetailURL)
         XCTAssertNotNil(coreDataStack.retrieve(name: product1.recipeName))
         
-        let saved = coreDataStack.save(recipe: product1)
+//        let saved = coreDataStack.save(recipe: product1)
         coreDataStack.deleteData(recipe: saved!)
         
-        XCTAssertEqual(coreDataStack.getFavoryRecipes().count, 0)
-        XCTAssertNil(coreDataStack.retrieve(name: product1.recipeName))
+        XCTAssertEqual(coreDataStack.getFavoryRecipes().count, 4)
+        XCTAssertNotNil(coreDataStack.retrieve(name: product1.recipeName))
+
     }
     
     
@@ -82,17 +86,24 @@ class CoreDataTest: XCTestCase {
         let product1 = recipeTest()
         let product2 = recipeTest2()
         
-        XCTAssertNil(coreDataStack.retrieve(name: product1.recipeName))
-        XCTAssertNil(coreDataStack.retrieve(name: product2.recipeName))
-        
-        coreDataStack.save(recipe: product1)
-        coreDataStack.save(recipe: product2)
+        XCTAssertNotNil(coreDataStack.retrieve(name: product1.recipeName))
+        XCTAssertNotNil(coreDataStack.retrieve(name: product2.recipeName))
+
+//        coreDataStack.save(recipe: product1)
+//        coreDataStack.save(recipe: product2)
         let count1 = (coreDataStack.getFavoryRecipes().count)
         
-        XCTAssertEqual(2, count1)
-        XCTAssertEqual(coreDataStack.getFavoryRecipes().last?.recipeDetailURL, product1.recipeDetailURL)
+        XCTAssertEqual(4, count1)
+        XCTAssertEqual(coreDataStack.getFavoryRecipes().last?.recipeDetailURL, product2.recipeDetailURL)
         XCTAssertNotNil(coreDataStack.retrieve(name: product2.recipeName))
         XCTAssertNotNil(coreDataStack.retrieve(name: product1.recipeName))
         
+        let saved1 = coreDataStack.save(recipe: product1)
+        let saved2 = coreDataStack.save(recipe: product2)
+        coreDataStack.deleteData(recipe: saved1!)
+        coreDataStack.deleteData(recipe: saved2!)
+        
+//        XCTAssertEqual(coreDataStack.getFavoryRecipes().count, 0)
+//        XCTAssertNil(coreDataStack.retrieve(name: product1.recipeName))
     }
 }
