@@ -47,7 +47,12 @@ class IngredientController: UIViewController {
     @IBAction func searchRecipeButton(_ sender: Any) {
         
         if let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "RecipeVC") as? RecipeController {
-            
+            guard IngredientService.shared.ingredients.count > 0 else {
+                let alert = UIAlertController(title: "Erreur", message: "Il n'y a pas d'ingredients", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
             vc.ingredients = IngredientService.shared.ingredients
             navigationController?.pushViewController(vc, animated: true)
         }
@@ -93,3 +98,4 @@ extension IngredientController:  UITableViewDelegate {
         }
     }
 }
+

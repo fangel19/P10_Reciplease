@@ -27,20 +27,26 @@ class RecipeController: UIViewController {
         
         let loader = loader()
         
-        RecipeRequest.shared.getRecipes(ingredients: ingredients, completion: { results, error in
-            
-            self.recipes = results
-            self.tableViewRecipe.reloadData()
-            
-            self.stopLoader(loader: loader, completion: {
-                if results.isEmpty {
-                    self.alertMessage(title: "error", message: "There is no recipe with this ingredient check your ingredients")
+        RecipeRequest.shared.getRecipes(ingredients: ingredients, completion: { results in
+            switch results {
+            case .success(let recipes):
+                DispatchQueue.main.async {
+                    //let recipes = recipes.hits
+                    if !recipes.hits.isEmpty {
+                        self.recipes = self.populateRecipeArray(hits: recipes.hits)
+                        self.tableViewRecipe.reloadData()
+                    } else {
+                        self.stopLoader(loader: loader, completion: {
+                            self.alertMessage(title: "error", message: "There is no recipe with this ingredient check your ingredients")
+                        })
+                    }
+                    self.stopLoader(loader: loader) {}
                 }
-                else if let error = error
-                {
-                    self.alertMessage(title: "error", message: error.localizedDescription)
-                }
-            })
+            case .failure(let failure):
+                self.stopLoader(loader: loader, completion: {
+                    self.alertMessage(title: "error", message: failure.localizedDescription)
+                })
+            }
         })
         
         tableViewRecipe.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "recipeCell")
@@ -49,10 +55,30 @@ class RecipeController: UIViewController {
         tableViewRecipe.dataSource = self
     }
     
+    //MARK: - Core
+    
+    private func populateRecipeArray(hits: [Hit]) -> [Recipe] {
+        var recipes = [Recipe]()
+        
+        hits.forEach { hit in
+            let recipe = Recipe(
+                recipeImage: hit.recipe.image,
+                recipeName: hit.recipe.label,
+                ingredients: hit.recipe.ingredientLines,
+                recipeTemp: Double(hit.recipe.totalTime),
+                numberOfLikes: Double(hit.recipe.yield),
+                recipeDetailURL: hit.recipe.url)
+            
+            recipes.append(recipe)
+        }
+        return recipes
+    }
     //MARK: - Function
     
     // Loader with message
     private func loader() -> UIAlertController {
+        
+        // FIXME: Addsubview en permanence, problème de leak mémoire ?
         
         let alert = UIAlertController(title: nil, message: "Please wait", preferredStyle: .alert)
         let indicator = UIActivityIndicatorView(style: .large)
@@ -106,6 +132,10 @@ extension RecipeController: UITableViewDelegate, UITableViewDataSource {
         print("Selected cell at index : \(indexPath.row)")
         selectedRecipe = self.recipes[indexPath.row]
         performSegue(withIdentifier: "toRecipeDetail", sender: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 113
     }
     
     //Show custom cell in this view

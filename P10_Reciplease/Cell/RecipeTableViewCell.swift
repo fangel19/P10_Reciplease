@@ -37,12 +37,12 @@ class RecipeTableViewCell: UITableViewCell {
     //MARK: - Function
     
     // To configure the custom cell
-    func configureCell(withImage image: UIImage, name: String, ingredient: String,  like: Double, temp: Double) {
+    func configureCell(withImage imageUrl: String, name: String, ingredient: String,  like: Double, temp: Double) {
         
         recipeName.text = name
         recipeIngredient.text = ingredient
         recipeTemp.text = temp.recipeTempInt + (" ⏱")
         numberOfLikes.text = like.numberOfLikesInt + (" 👍")
-        recipeImage.image = image
+        recipeImage.downloaded(from: imageUrl)
     }
 }

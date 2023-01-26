@@ -7,15 +7,11 @@
 
 // MARK: - RecipeElement
 struct RecipeElement: Codable {
-    let uri: String
     let label: String
     let image: String
-    let source: String
     let url: String
-    let shareAs: String
     let yield: Double
     let ingredientLines: [String]
     let ingredients: [IngredientRecipe]
-    let calories, totalWeight: Double
-    let totalTime: Int
+    let totalTime: Double
 }

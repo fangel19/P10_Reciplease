@@ -56,7 +56,7 @@ class SelectedRecipeController: UIViewController {
         gradientColorBlak.addBlackGradient(frame: gradientColorBlak.bounds, colors: [UIColor.clear, UIColor.black])
         recipeNameLabel.text = recipeChosen.recipeName
         allIngredients.text = recipeChosen.ingredients.joined(separator: "\n")
-        selectedRecipeImage.image = recipeChosen.recipeImage
+        selectedRecipeImage.downloaded(from: recipeChosen.recipeImage)
     }
     
     // To add or remove favorites

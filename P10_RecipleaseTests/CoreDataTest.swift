@@ -60,7 +60,7 @@ class CoreDataTest: XCTestCase {
     }
     
     // MARK: - Tests
-    
+
     func testaddAndRemoveRecipe() {
         let product1 = recipeTest()
         

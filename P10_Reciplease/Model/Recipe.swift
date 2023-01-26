@@ -10,7 +10,7 @@ import UIKit
 
 struct Recipe {
     
-    let recipeImage: UIImage
+    let recipeImage: String
     let recipeName: String
     let ingredients: [String]
     let recipeTemp: Double

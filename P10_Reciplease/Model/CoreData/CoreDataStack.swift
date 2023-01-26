@@ -46,7 +46,7 @@ class CoreDataStack {
         let recipeEntity = NSManagedObject(entity: entity, insertInto: viewContext)
         recipeEntity.setValue(recipe.recipeName, forKey: "label")
         recipeEntity.setValue(recipe.ingredients.joined(separator: ";"), forKey: "ingredientLines")
-        recipeEntity.setValue(recipe.recipeImage.pngData(), forKey: "image")
+        recipeEntity.setValue(recipe.recipeImage, forKey: "image")
         recipeEntity.setValue(recipe.recipeDetailURL, forKey: "urlRecipe")
         recipeEntity.setValue(recipe.recipeTemp, forKey: "temp")
         recipeEntity.setValue(recipe.numberOfLikes, forKey: "likes")
@@ -82,14 +82,11 @@ class CoreDataStack {
             var recipes: [Recipe] = []
             results.forEach { result in
                 
-                let imageData: Data? = result.value(forKey: "image") as? Data
-                let image: UIImage? = imageData.flatMap { UIImage(data: $0) }
-                
                 let ingredients: String? = result.value(forKey: "ingredientLines") as? String
                 let ingredientsArray: [String]? = ingredients?.components(separatedBy: ";")
                 
                 let recipe = Recipe(
-                    recipeImage: image ?? UIImage(),
+                    recipeImage: result.value(forKey: "image") as! String,
                     recipeName: result.value(forKey: "label") as! String,
                     ingredients: ingredientsArray ?? [],
                     recipeTemp: result.value(forKey: "temp") as! Double,

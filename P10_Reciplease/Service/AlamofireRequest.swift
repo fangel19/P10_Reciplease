@@ -24,40 +24,33 @@ class RecipeRequest {
     // MARK: - Method
     
     // For get recipes through its url
-    func getRecipes(ingredients: [Ingredient], completion: @escaping ([Recipe], Error?) -> Void) {
+    func getRecipes(ingredients: [Ingredient], completion: @escaping (Result<Welcome, APIError>) -> Void) {
         
         AF.cancelAllRequests()
         
         let names: [String] = ingredients.map { $0.name }
         let formattedString: String = names.joined(separator: ",")
         
-        guard let url = route.getURL(ingredients: formattedString)  else { return }
+        guard let url = route.getURL(ingredients: formattedString)  else {
+            completion(.failure(.badURL))
+            return
+        }
         
-        session.request(url, method: .get).responseDecodable(of: Welcome.self) { response in
-            //Create an array
-            var recipes = [Recipe]()
+        
+        session.request(url).validate(statusCode: 200..<299).responseData { response in
             
-            // Hydrate the array
-            let welcome = response.value
-            welcome?.hits.forEach { hit in
-                let urlString: String = hit.recipe.image
-                if let url: URL = URL(string: urlString)
-                    , let data: Data = try? Data(contentsOf: url)
-                    , let image: UIImage = UIImage(data: data)
-                    
-                {
-                    let recipe = Recipe(
-                        recipeImage: image,
-                        recipeName: hit.recipe.label,
-                        ingredients: hit.recipe.ingredientLines,
-                        recipeTemp: Double(hit.recipe.totalTime),
-                        numberOfLikes: Double(hit.recipe.yield),
-                        recipeDetailURL: hit.recipe.url)
-                    
-                    recipes.append(recipe)
+            switch response.result {
+            case .success(let hits):
+                print(hits.count)
+                
+                guard let recipes = try? JSONDecoder().decode(Welcome.self, from: hits) else {
+                    completion(.failure(.decoding))
+                    return
                 }
+                completion(.success(recipes))
+            case .failure(let error):
+                print(error.localizedDescription)
             }
-            completion(recipes, response.error)
         }
     }
 }
