@@ -24,7 +24,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="389" height="113"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2j-t2-ggT">
-                        <rect key="frame" x="15" y="60.5" width="201" height="20.5"/>
+                        <rect key="frame" x="15" y="60.5" width="107" height="20.5"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -64,7 +64,6 @@
                     <constraint firstAttribute="trailing" secondItem="SyL-7J-aNX" secondAttribute="trailing" constant="15" id="EAo-Ul-oWE"/>
                     <constraint firstItem="U8s-GV-HSQ" firstAttribute="top" secondItem="I2j-t2-ggT" secondAttribute="bottom" constant="8" id="K9G-Bn-VWW"/>
                     <constraint firstItem="SyL-7J-aNX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Mvr-J5-9IB"/>
-                    <constraint firstItem="SyL-7J-aNX" firstAttribute="leading" secondItem="I2j-t2-ggT" secondAttribute="trailing" constant="100" id="QP0-b4-teX"/>
                     <constraint firstAttribute="trailing" secondItem="ypT-gi-CzH" secondAttribute="trailing" id="Tg2-5P-mgN"/>
                     <constraint firstItem="ypT-gi-CzH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="g1n-V3-DpB"/>
                     <constraint firstAttribute="bottom" secondItem="UbQ-Dp-ycN" secondAttribute="bottom" id="huq-Tb-OQJ"/>

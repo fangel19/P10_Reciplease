@@ -33,7 +33,7 @@ class SelectedRecipeController: UIViewController {
         hydrateView()
     }
     
-    private var existingFavorite: NSManagedObject? = nil
+    private var existingFavorite: RecipeMO? = nil
     
     // Allows you to check if the recipe exists in the favorite and give it the right color
     override func viewDidAppear(_ animated: Bool) {

@@ -13,11 +13,10 @@ class IngredientService {
     // MARK: - Singleton
     
     static let shared = IngredientService()
-    private  init() {}
     
     // MARK: - Properties
     
-    private(set) var ingredients: [Ingredient] = []
+    var ingredients: [Ingredient] = []
     
     //MARK: - Function
     
@@ -31,7 +30,7 @@ class IngredientService {
         ingredients.remove(at: index)
     }
     
-    // F>or remove all ingredients
+    // For remove all ingredients
     func removeAllIngredient() {
         ingredients.removeAll()
     }

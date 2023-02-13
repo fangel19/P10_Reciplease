@@ -10,15 +10,9 @@ import XCTest
 
 final class URLTest: URLProtocol {
     
-    override class func canInit(with request: URLRequest) -> Bool {
-        
-        return true
-    }
+    override class func canInit(with request: URLRequest) -> Bool { return true }
     
-    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
-        
-        return request
-    }
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest { return request }
     
     static var loadingHandler: ((URLRequest) -> (HTTPURLResponse, Data?, Error?))?
     
@@ -38,6 +32,5 @@ final class URLTest: URLProtocol {
             client?.urlProtocol(self, didFailWithError: protocoleError)
         }
     }
-    
     override func stopLoading() {}
 }

@@ -9,8 +9,8 @@ import Foundation
 import CoreData
 @testable import P10_Reciplease
 
-class TestContext {
-    static let modelName = "Reciplease_P_10"
+class TestContext: CoreDataStack {
+    static let modelName = "Reciplease"
     static let model: NSManagedObjectModel = {
         let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
@@ -19,9 +19,7 @@ class TestContext {
     lazy var testContainer : NSPersistentContainer = {
         let persistentStoreDescription = NSPersistentStoreDescription()
         persistentStoreDescription.type = NSInMemoryStoreType
-
         let container = NSPersistentContainer(name: TestContext.modelName, managedObjectModel: TestContext.model)
-
         container.persistentStoreDescriptions = [persistentStoreDescription]
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
@@ -30,11 +28,11 @@ class TestContext {
         }
         return container
     }()
-
+    
     static var testContainer: NSPersistentContainer {
         return TestContext().testContainer
     }
-
+    
     static var testContext : NSManagedObjectContext {
         return testContainer.viewContext
     }

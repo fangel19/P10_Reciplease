@@ -1,3 +1,3 @@
 struct Welcome: Codable {
-    let hits: [Hit]
+    let hits: [Hit]?
 }

@@ -25,18 +25,16 @@ class FavoriteRecipeController: UIViewController {
         super.viewDidLoad()
         
         fetchRecipe()
-        
         tableViewFavorite.register(UINib(nibName: "RecipeTableViewCell", bundle: nil), forCellReuseIdentifier: "recipeCell")
-        
         tableViewFavorite.delegate  = self
         tableViewFavorite.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
-         super.viewWillAppear(animated)
-         fetchRecipe()
-       }
-
+        super.viewWillAppear(animated)
+        fetchRecipe()
+    }
+    
     // Allows you to update the favorites view as soon as you open it
     func fetchRecipe() {
         let recipes: [Recipe] = CoreDataStack.sharedInstance.getFavoryRecipes()
@@ -78,6 +76,10 @@ extension FavoriteRecipeController: UITableViewDelegate, UITableViewDataSource {
         print("Selected cell at index : \(indexPath.row)")
         selectedRecipe = self.favorites[indexPath.row]
         performSegue(withIdentifier: "toRecipeDetailFavory", sender: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 113
     }
     
     //Show custom cell in this view

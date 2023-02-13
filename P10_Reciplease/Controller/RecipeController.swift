@@ -31,9 +31,8 @@ class RecipeController: UIViewController {
             switch results {
             case .success(let recipes):
                 DispatchQueue.main.async {
-                    //let recipes = recipes.hits
-                    if !recipes.hits.isEmpty {
-                        self.recipes = self.populateRecipeArray(hits: recipes.hits)
+                    if !recipes.hits!.isEmpty {
+                        self.recipes = self.populateRecipeArray(hits: recipes.hits!)
                         self.tableViewRecipe.reloadData()
                     } else {
                         self.stopLoader(loader: loader, completion: {
@@ -77,9 +76,7 @@ class RecipeController: UIViewController {
     
     // Loader with message
     private func loader() -> UIAlertController {
-        
-        // FIXME: Addsubview en permanence, problème de leak mémoire ?
-        
+                
         let alert = UIAlertController(title: nil, message: "Please wait", preferredStyle: .alert)
         let indicator = UIActivityIndicatorView(style: .large)
         

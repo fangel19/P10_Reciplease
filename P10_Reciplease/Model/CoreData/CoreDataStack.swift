@@ -22,17 +22,17 @@ class CoreDataStack {
         return appDelegate.persistentContainer.viewContext
     }
     
-    // MARK: - Private
+    // MARK: - Methods
     
     // Retrieve the recipe in Core data
-    public func retrieve(name: String) -> NSManagedObject? {
+    public func retrieve(name: String) -> RecipeMO? {
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Recipe")
         fetchRequest.predicate = NSPredicate(format: "label LIKE %@", name)
         
         do {
             let entities = try viewContext.fetch(fetchRequest)
-            return entities.first as? NSManagedObject
+            return entities.first as? RecipeMO
             
         } catch {
             return nil
@@ -40,10 +40,9 @@ class CoreDataStack {
     }
     
     // For save recipe
-    public func save(recipe: Recipe) -> NSManagedObject? {
+    public func save(recipe: Recipe) -> RecipeMO? {
         
-        let entity = NSEntityDescription.entity(forEntityName: "Recipe", in: viewContext)!
-        let recipeEntity = NSManagedObject(entity: entity, insertInto: viewContext)
+        let recipeEntity = RecipeMO(context: viewContext)
         recipeEntity.setValue(recipe.recipeName, forKey: "label")
         recipeEntity.setValue(recipe.ingredients.joined(separator: ";"), forKey: "ingredientLines")
         recipeEntity.setValue(recipe.recipeImage, forKey: "image")
@@ -62,23 +61,22 @@ class CoreDataStack {
     }
     
     // for delete recipe
-    public func deleteData(recipe: NSManagedObject) {
-        //        let context = self.viewContext.managedObjectContext!
+    public func deleteData(recipe: RecipeMO) {
         viewContext.delete(recipe)
         do {
             try viewContext.save()
-            print("delete")
             
         } catch {
+            print(error.localizedDescription)
         }
     }
     
     // get favorite recipes that will be used to display views
     public func getFavoryRecipes() -> [Recipe] {
         
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Recipe")
+        let fetchRequest = RecipeMO.fetchRequest()
         do {
-            let results: [NSManagedObject] = try viewContext.fetch(fetchRequest)
+            let results = try viewContext.fetch(fetchRequest)
             var recipes: [Recipe] = []
             results.forEach { result in
                 
