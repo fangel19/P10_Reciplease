@@ -76,7 +76,7 @@ class RecipeController: UIViewController {
     
     // Loader with message
     private func loader() -> UIAlertController {
-                
+        
         let alert = UIAlertController(title: nil, message: "Please wait", preferredStyle: .alert)
         let indicator = UIActivityIndicatorView(style: .large)
         

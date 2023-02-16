@@ -21,7 +21,7 @@ class IngredientController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     }
+    }
     
     //MARK: - @IBACTION
     
@@ -35,7 +35,7 @@ class IngredientController: UIViewController {
         tableView?.reloadData()
         nameIngredientTextField.text = ""
     }
-        
+    
     // Button for remove ingredients in tableView
     @IBAction func clearButton(_ sender: Any) {
         
@@ -78,7 +78,7 @@ extension IngredientController: UITextFieldDelegate,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
         let ingredient = IngredientService.shared.ingredients[indexPath.row]
         cell.textLabel?.text = ingredient.name

@@ -119,7 +119,6 @@ class CoreDataServiceTest: XCTestCase {
     func testProblemWithRetrieve() {
         
         let retrievedRecipe = coreDataService.retrieve(name: "TOTO")
-        
         XCTAssertNil(retrievedRecipe)
     }
 }
