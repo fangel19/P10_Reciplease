@@ -12,7 +12,6 @@ import CoreData
 
 class CoreDataService {
     
-    
     private let coreDataStack: TestContext
     private let viewContextManaged: NSManagedObjectContext
     
